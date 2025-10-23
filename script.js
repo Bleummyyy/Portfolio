@@ -38,4 +38,33 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+/* intro animation */
+document.addEventListener("scroll", () => {
+  const introText = document.querySelector(".intro-text");
+  const introImage = document.querySelector(".intro-image");
 
+  // Trigger animation when scrolling 100px or more
+  if (window.scrollY > 100) {
+    introText.classList.add("fade-out");
+    introImage.classList.add("fade-out");
+  } else {
+    introText.classList.remove("fade-out");
+    introImage.classList.remove("fade-out");
+  }
+});
+
+/* my projeect animation*/
+document.addEventListener("scroll", () => {
+  const projects = document.querySelectorAll(".project-card");
+  const triggerBottom = window.innerHeight * 0.60; // when 85% of screen is reached
+
+  projects.forEach(project => {
+    const projectTop = project.getBoundingClientRect().top;
+
+    if (projectTop < triggerBottom) {
+      project.classList.add("visible");
+    } else {
+      project.classList.remove("visible");
+    }
+  });
+});

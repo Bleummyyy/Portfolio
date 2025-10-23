@@ -534,3 +534,34 @@ body {
   font-size: 0.95rem;
   line-height: 1.4;
 }
+
+/* animation intro */
+
+/* Initial state */
+.intro-text, .intro-image {
+  transition: all 0.8s ease-out;
+}
+
+/* When scrolled (fade + slide) */
+.intro-text.fade-out {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.intro-image.fade-out {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+/*my project animation*/
+
+.project-card {
+  opacity: 0;
+  transform: translateY(50px); /* starts slightly below */
+  transition: all 0.8s ease-out;
+}
+
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
