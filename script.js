@@ -1,16 +1,41 @@
-// Animate dropdown menu visibility by overriding Bootstrap inline styles
-const dropdownElement = document.querySelector('.dropdown-menu');
+document.addEventListener("DOMContentLoaded", function () {
+  const homeLink = document.getElementById("home-link");
 
-if (dropdownElement) {
-  dropdownElement.addEventListener('show.bs.dropdown', () => {
-    // Remove inline display:none when dropdown is shown
-    dropdownElement.style.display = 'block';
-  });
+  if (homeLink) {
+    homeLink.addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent default anchor behavior
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Smooth scroll to top
+      });
+    });
+  }
+});
 
-  dropdownElement.addEventListener('hide.bs.dropdown', () => {
-    // Delay hiding display to allow CSS animation
-    setTimeout(() => {
-      dropdownElement.style.display = 'none';
-    }, 300); // Duration matches CSS transition time
-  });
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const contactForm = document.querySelector(".contact-form");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const params = {
+        from_name: document.getElementById("name").value,
+        from_email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+      };
+
+      emailjs.send("service_omtl227", "template_e4enmgw", params)
+        .then(() => {
+          alert("✅ Message sent successfully! I’ll get back to you soon.");
+          contactForm.reset();
+        })
+        .catch((error) => {
+          alert("❌ Failed to send message. Please try again later.");
+          console.error("EmailJS error:", error);
+        });
+    });
+  }
+});
+
+
