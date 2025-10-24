@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+/* email respond */
 document.addEventListener("DOMContentLoaded", function () {
   const contactForm = document.querySelector(".contact-form");
 
@@ -20,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
 
       const params = {
-        from_name: document.getElementById("name").value,
-        from_email: document.getElementById("email").value,
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
         message: document.getElementById("message").value
       };
 
@@ -38,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+
+
 /* intro animation */
 document.addEventListener("scroll", () => {
   const introText = document.querySelector(".intro-text");
@@ -53,7 +56,7 @@ document.addEventListener("scroll", () => {
   }
 });
 
-/* my projeect animation*/
+/* my project animation*/
 document.addEventListener("scroll", () => {
   const projects = document.querySelectorAll(".project-card");
   const triggerBottom = window.innerHeight * 0.60; // when 85% of screen is reached
@@ -67,4 +70,45 @@ document.addEventListener("scroll", () => {
       project.classList.remove("visible");
     }
   });
+});
+
+/* intro text type animation*/
+
+document.addEventListener("DOMContentLoaded", function() {
+  const textElement = document.getElementById("typing-text");
+  const texts = ["QUALITY ASSURANCE.", "MOBILE DEVELOPER.", "SOFTWARE DEVELOPER."];
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typingSpeed = 120;   // speed of typing
+  const deletingSpeed = 70;  // speed of deleting
+  const delayBetween = 1500; // pause before deleting
+
+  function typeEffect() {
+    const currentText = texts[textIndex];
+
+    if (!isDeleting) {
+      textElement.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+
+      if (charIndex === currentText.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, delayBetween);
+        return;
+      }
+    } else {
+      textElement.textContent = currentText.substring(0, charIndex - 1);
+      charIndex--;
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+      }
+    }
+
+    const speed = isDeleting ? deletingSpeed : typingSpeed;
+    setTimeout(typeEffect, speed);
+  }
+
+  typeEffect();
 });
