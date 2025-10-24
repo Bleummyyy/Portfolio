@@ -11,7 +11,7 @@ body {
 .custom-navbar {
   position: sticky;
   top: 0;
-  z-index: 1000; /* keeps it above other elements */
+  z-index: 1000;
   background-color: #222;
   padding: 8px 30px;
   border-bottom: 1px solid #333;
@@ -57,7 +57,7 @@ body {
 }
 
 .intro-text .pretitle {
-  font-family: "Poppins", sans-serif; /* force the font */
+  font-family: "Poppins", sans-serif;
   color: #28a745;
   font-size: 1.2rem;
   font-weight: 500;
@@ -68,16 +68,16 @@ body {
 
 
 .intro-text h1 {
-  font-size: 2.3rem; /* larger title */
+  font-size: 2.3rem; 
   line-height: 1.2;
-  font-weight: 800; /* strong bold */
+  font-weight: 800; 
   font-family: "Poppins", sans-serif;
   margin: 0;
   color: #fff;
 }
 
 .intro-text pretext {
-  font-family: "Courier New", monospace; /* This will now apply to “A passionate” */
+  font-family: "Courier New", monospace;
   font-size: 4 rem;
   line-height: 1.3;
   margin: 0;
@@ -98,20 +98,20 @@ body {
 
 /*  intro type text animation*/
 .pretext {
-  font-family: "Courier New", monospace; /* This will now apply to “A passionate” */
+  font-family: "Courier New", monospace;
   font-size: 2rem;
   font-weight: 400;
   color: #fff;
 }
 
 .typing-label {
-  font-family: "Poppins", sans-serif; /* This font now belongs to “A passionate” */
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   margin-right: 10px;
 }
 
 #typing-text {
-  font-family: "Poppins", sans-serif; /* Swapped here: now the animation uses Poppins */
+  font-family: "Poppins", sans-serif; 
   font-size: 2rem;
   color: #fff;
   border-right: 3px solid #28a745;
@@ -398,114 +398,43 @@ body {
 .footer {
   background-color: #111;
   color: #ddd;
-  padding: 60px 10% 30px;
+  text-align: center;
+  padding: 40px 0 20px;
   font-family: "Poppins", sans-serif;
   border-top: 1px solid #333;
 }
 
-.footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 40px;
-  margin-bottom: 40px;
-}
-
-.footer h3 {
-  color: #28a745;
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-}
-
-.footer-about,
-.footer-links,
 .footer-social {
-  flex: 1;
-  min-width: 250px;
-}
-
-.footer-about p {
-  color: #ccc;
-  line-height: 1.6;
-}
-
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links ul li {
-  margin-bottom: 10px;
-}
-
-.footer-links ul li a {
-  text-decoration: none;
-  color: #ccc;
-  transition: color 0.2s ease;
-}
-
-.footer-links ul li a:hover {
-  color: #28a745;
-}
-
-/* Social icons */
-.footer-social .social-icons {
   display: flex;
-  gap: 15px;
-  margin-top: 10px;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 20px;
 }
 
-.footer-social .social-icons img {
-  width: 28px;
-  height: 28px;
+.footer-social img {
+  width: 32px;
+  height: 32px;
   filter: brightness(0) invert(1);
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.footer-social .social-icons img:hover {
-  transform: scale(1.1);
+.footer-social img:hover {
+  transform: scale(1.15);
   filter: brightness(0) invert(0.4) sepia(1) hue-rotate(90deg);
 }
 
-/* Email section */
-.email-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.email-container img {
-  width: 22px;
-  height: 22px;
-  filter: brightness(0) invert(1);
-}
-
-.email-container p {
-  margin: 0;
-  font-size: 16px;
-  color: #ccc;
-  font-weight: 500;
-  word-break: break-all;
-}
-
-/* Contact number */
-.footer-social p {
-  font-size: 16px;
-  color: #ccc;
-  margin-top: 5px;
-}
-
-/* Footer bottom */
 .footer-bottom {
   border-top: 1px solid #333;
-  text-align: center;
-  padding-top: 20px;
-  font-size: 0.9rem;
-  color: #aaa;
+  margin: 0 auto;
+  width: 80%;
+  padding-top: 15px;
 }
 
+.footer-bottom p {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin: 0;
+}
 
 
 
@@ -598,4 +527,64 @@ body {
 .project-card.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* my project video animation */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 60px 10%;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+  background-color: #1c1c1c;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+  display: block;
+}
+
+.project-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+.project-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover Effect */
+.project-card:hover .project-video {
+  opacity: 1;
+}
+
+.project-card:hover .project-image {
+  opacity: 0;
 }

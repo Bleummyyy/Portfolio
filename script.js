@@ -76,12 +76,12 @@ document.addEventListener("scroll", () => {
 
 document.addEventListener("DOMContentLoaded", function() {
   const textElement = document.getElementById("typing-text");
-  const texts = ["QUALITY ASSURANCE.", "MOBILE DEVELOPER.", "SOFTWARE DEVELOPER."];
+  const texts = ["MOBILE APP DEVELOPER.", "SOFTWARE DEVELOPER.", "QUALITY ASSURANCE."];
   let textIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
   const typingSpeed = 120;   // speed of typing
-  const deletingSpeed = 70;  // speed of deleting
+  const deletingSpeed = 30;  // speed of deleting
   const delayBetween = 1500; // pause before deleting
 
   function typeEffect() {
@@ -111,4 +111,19 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   typeEffect();
+});
+
+/* my project video player */
+document.querySelectorAll(".project-card").forEach(card => {
+  const video = card.querySelector(".project-video");
+
+  card.addEventListener("mouseenter", () => {
+    video.currentTime = 0; // Start from beginning
+    video.play();
+  });
+
+  card.addEventListener("mouseleave", () => {
+    video.pause();
+    video.currentTime = 0; // Reset when not hovered
+  });
 });
