@@ -114,16 +114,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 /* my project video player */
-document.querySelectorAll(".project-card").forEach(card => {
-  const video = card.querySelector(".project-video");
+document.querySelectorAll('.project-card').forEach(card => {
+  const video = card.querySelector('.project-video');
 
-  card.addEventListener("mouseenter", () => {
-    video.currentTime = 0; // Start from beginning
+  card.addEventListener('mouseenter', () => {
+    video.currentTime = 0;
     video.play();
   });
 
-  card.addEventListener("mouseleave", () => {
+  card.addEventListener('mouseleave', () => {
     video.pause();
-    video.currentTime = 0; // Reset when not hovered
   });
 });
