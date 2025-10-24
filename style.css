@@ -163,6 +163,27 @@ body {
   }
 }
 
+/*intro animation*/
+/* Default state (visible) */
+.intro-text,
+.intro-image {
+  opacity: 1;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* When fade-out is active */
+.intro-text.fade-out {
+  opacity: 0;
+  transform: translateX(-80px); /* Moves text to the left */
+}
+
+.intro-image.fade-out {
+  opacity: 0;
+  transform: translateX(80px); /* Moves image to the right */
+}
+
+
+
 /* ===== ABOUT SECTION ===== */
 .about-section {
   background-color: #222;
