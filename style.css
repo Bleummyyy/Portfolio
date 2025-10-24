@@ -275,6 +275,43 @@ body {
   }
 }
 
+.about-highlights {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.highlight-box {
+  background: #222;
+  border: 1px solid #28a745;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.tech-icons img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.tech-icons img:hover {
+  transform: scale(1.15);
+}
+
+
 /* ===== GALLERY SECTION ===== */
 .gallery-section {
   background-color: #222;
