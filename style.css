@@ -148,7 +148,7 @@ body {
 
 .scroll-down-btn {
   position: absolute;
-  bottom: 30px;
+  bottom: 50px;
   left: 60px;
   width: 55px;
   height: 55px;
@@ -397,21 +397,85 @@ body {
   box-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
 }
 
+/* Fullscreen Image Viewer */
+.image-viewer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.image-viewer img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.image-viewer .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 
 /* ===== CONTACT CONTENT ===== */
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 80px 10%;
+  font-family: "Poppins", sans-serif;
+}
+
+.contact-section h2 {
+  font-size: 2.2rem;
+  color: #28a745; /* your theme green */
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.contact-section p {
+  font-size: 1.1rem;
+  color: #ccc;
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+  line-height: 1.6;
+}
+
+
 .contact-content {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .contact-form {
   flex: 1;
   min-width: 300px;
   max-width: 500px;
-  text-align: left;
 }
 
 .form-group {
@@ -457,8 +521,8 @@ body {
 /* ===== MAP CONTAINER ===== */
 .map-container {
   flex: 1;
-  min-width: 250px;
-  height: 350px;
+  min-width: 350px;
+  height: 380px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);

@@ -130,3 +130,29 @@ document.querySelectorAll('.project-card').forEach(card => {
 /* Gallery Function */
 
 
+document.addEventListener("DOMContentLoaded", function() {
+  const images = document.querySelectorAll(".image-item img");
+  const viewer = document.getElementById("image-viewer");
+  const fullImage = document.getElementById("full-image");
+  const closeBtn = document.querySelector(".close-btn");
+
+  // When an image is clicked
+  images.forEach(image => {
+    image.addEventListener("click", () => {
+      fullImage.src = image.src;
+      viewer.style.display = "flex";
+    });
+  });
+
+  // Close when clicking the X
+  closeBtn.addEventListener("click", () => {
+    viewer.style.display = "none";
+  });
+
+  // Close when clicking outside the image
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) {
+      viewer.style.display = "none";
+    }
+  });
+});
