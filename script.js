@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (homeLink) {
     homeLink.addEventListener("click", function (e) {
-      e.preventDefault(); // Prevent default anchor behavior
+      e.preventDefault(); 
       window.scrollTo({
         top: 0,
-        behavior: "smooth" // Smooth scroll to top
+        behavior: "smooth" 
       });
     });
   }
@@ -76,13 +76,13 @@ document.addEventListener("scroll", () => {
 
 document.addEventListener("DOMContentLoaded", function() {
   const textElement = document.getElementById("typing-text");
-  const texts = ["MOBILE APP DEVELOPER.", "SOFTWARE DEVELOPER.", "QUALITY ASSURANCE."];
+  const texts = ["MOBILE APP DEVELOPER.", "QUALITY ASSURANCE.", "SOFTWARE DEVELOPER"];
   let textIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
-  const typingSpeed = 120;   // speed of typing
-  const deletingSpeed = 30;  // speed of deleting
-  const delayBetween = 1500; // pause before deleting
+  const typingSpeed = 120;   
+  const deletingSpeed = 30;  
+  const delayBetween = 1500; 
 
   function typeEffect() {
     const currentText = texts[textIndex];

@@ -372,7 +372,7 @@ body {
   margin-bottom: 40px;
 }
 
-/* ===== CONTACT CONTENT (form + map side by side) ===== */
+/* ===== CONTACT CONTENT ===== */
 .contact-content {
   display: flex;
   justify-content: center;
@@ -517,7 +517,7 @@ body {
 .projects-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;  /* ✅ centers all cards horizontally */
+  justify-content: center;  
   gap: 30px;
   margin-top: 60px;
 }
@@ -525,7 +525,7 @@ body {
 /* === Project Card === */
 .project-card {
   position: relative;
-  width: 320px; /* ✅ consistent fixed size for neat alignment */
+  width: 320px; 
   height: 260px;
   background-color: #111;
   border-radius: 15px;
