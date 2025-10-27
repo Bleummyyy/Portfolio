@@ -126,3 +126,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     video.pause();
   });
 });
+
+/* Gallery Function */
+
+
