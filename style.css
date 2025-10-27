@@ -359,24 +359,22 @@ body {
 /* ===== GALLERY SECTION ===== */
 .gallery-section {
   background-color: #222;
-  padding: 60px 8%;
+  padding: 60px 10%;
   color: #fff;
   text-align: center;
 }
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 20px; /* tighter spacing between images */
   margin-top: 30px;
-  justify-items: center;
 }
 
 .image-item {
   position: relative;
-  width: 100%;
-  max-width: 320px; /* ✅ Controls max image width */
-  aspect-ratio: 4 / 3; /* ✅ Slightly shorter shape */
+  width: 100%; /* fills the column fully */
+  aspect-ratio: 4 / 3; /* keeps equal proportions */
   overflow: hidden;
   border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -399,26 +397,6 @@ body {
   box-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
 }
 
-
-/* ===== CONTACT SECTION ===== */
-.contact-section {
-  background-color: #222;
-  color: #fff;
-  padding: 80px 10%;
-  text-align: center;
-}
-
-.contact-section h2 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-  color: #28a745;
-}
-
-.contact-section p {
-  font-size: 1rem;
-  color: #ccc;
-  margin-bottom: 40px;
-}
 
 /* ===== CONTACT CONTENT ===== */
 .contact-content {
