@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Check for close matches using Levenshtein distance
     const popularDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com'];
     for (let popularDomain of popularDomains) {
-      // Only suggest if domain is different AND close enough
       if (domain !== popularDomain && levenshteinDistance(domain, popularDomain) === 1) {
         return popularDomain;
       }
@@ -165,23 +164,19 @@ document.addEventListener("DOMContentLoaded", function () {
   function hasValidDomain(email) {
     const domain = email.split('@')[1];
     
-    // Check if domain has at least one dot
     if (!domain.includes('.')) {
       return false;
     }
 
-    // Check if domain doesn't start or end with dot/hyphen
     if (domain.startsWith('.') || domain.startsWith('-') || 
         domain.endsWith('.') || domain.endsWith('-')) {
       return false;
     }
 
-    // Check for consecutive dots
     if (domain.includes('..')) {
       return false;
     }
 
-    // Check if TLD is at least 2 characters
     const tld = domain.split('.').pop();
     if (tld.length < 2) {
       return false;
@@ -198,7 +193,6 @@ document.addEventListener("DOMContentLoaded", function () {
       message: message
     };
 
-    // Show loading state
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
     submitButton.textContent = "Sending...";
@@ -214,46 +208,17 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("EmailJS error:", error);
       })
       .finally(() => {
-        // Restore button state
         submitButton.textContent = originalText;
         submitButton.disabled = false;
       });
   }
 });
-/*document.addEventListener("DOMContentLoaded", function () {
-  const contactForm = document.querySelector(".contact-form");
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const params = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value
-      };
-
-      emailjs.send("service_omtl227", "template_e4enmgw", params)
-        .then(() => {
-          alert("✅ Message sent successfully! I’ll get back to you soon.");
-          contactForm.reset();
-        })
-        .catch((error) => {
-          alert("❌ Failed to send message. Please try again later.");
-          console.error("EmailJS error:", error);
-        });
-    });
-  }
-});*/
-
-
 
 /* intro animation */
 document.addEventListener("scroll", () => {
   const introText = document.querySelector(".intro-text");
   const introImage = document.querySelector(".intro-image");
 
-  // Trigger animation when scrolling 100px or more
   if (window.scrollY > 100) {
     introText.classList.add("fade-out");
     introImage.classList.add("fade-out");
@@ -266,7 +231,7 @@ document.addEventListener("scroll", () => {
 /* my project animation*/
 document.addEventListener("scroll", () => {
   const projects = document.querySelectorAll(".project-card");
-  const triggerBottom = window.innerHeight * 0.60; // when 85% of screen is reached
+  const triggerBottom = window.innerHeight * 0.60;
 
   projects.forEach(project => {
     const projectTop = project.getBoundingClientRect().top;
@@ -282,7 +247,7 @@ document.addEventListener("scroll", () => {
 /* intro text type animation*/
 document.addEventListener("DOMContentLoaded", function() {
   const textElement = document.getElementById("typing-text");
-  const texts = ["MOBILE APP DEVELOPER.", "QUALITY ASSURANCE.", "SOFTWARE DEVELOPER"];
+  const texts = ["IMPLEMENTATION CONSULTANT.", "DATA ANALYST.", "QUALITY ASSURANCE."];
   let textIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
@@ -340,7 +305,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const fullImage = document.getElementById("full-image");
   const closeBtn = document.querySelector(".close-btn");
 
-  // When an image is clicked
   images.forEach(image => {
     image.addEventListener("click", () => {
       fullImage.src = image.src;
@@ -348,15 +312,190 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Close when clicking the X
   closeBtn.addEventListener("click", () => {
     viewer.style.display = "none";
   });
 
-  // Close when clicking outside the image
   viewer.addEventListener("click", (e) => {
     if (e.target === viewer) {
       viewer.style.display = "none";
     }
   });
+});
+
+/* ===== PARTICLE BACKGROUND ===== */
+(function () {
+  const canvas = document.getElementById("particle-bg");
+  const ctx = canvas.getContext("2d");
+
+  const GREEN = "#28a745";
+  const GREEN_DIM = "rgba(40,167,69,";
+  const BLUE_DIM = "rgba(59,130,246,";
+
+  let W, H, particles, mouse = { x: -9999, y: -9999 };
+
+  const CONFIG = {
+    count: 90,
+    speed: 0.25,
+    maxDist: 130,
+    mouseRadius: 180,
+    minRadius: 0.8,
+    maxRadius: 2.2,
+    glowBlur: 6,
+  };
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function makeParticle() {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * CONFIG.speed,
+      vy: (Math.random() - 0.5) * CONFIG.speed,
+      r: Math.random() * (CONFIG.maxRadius - CONFIG.minRadius) + CONFIG.minRadius,
+      opacity: Math.random() * 0.3 + 0.4,
+      drift: Math.random() * Math.PI * 2,
+      driftSpeed: (Math.random() * 0.003) + 0.001,
+    };
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: CONFIG.count }, makeParticle);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // Gentle sine drift
+      p.drift += p.driftSpeed;
+      p.x += p.vx + Math.sin(p.drift) * 0.2;
+      p.y += p.vy + Math.cos(p.drift) * 0.2;
+
+      if (p.x < -10) p.x = W + 10;
+      if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10;
+      if (p.y > H + 10) p.y = -10;
+
+      // Particle-to-particle lines (blue)
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x;
+        const dy = p.y - q.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < CONFIG.maxDist) {
+          const alpha = (1 - dist / CONFIG.maxDist) * 0.35;
+
+          const grad = ctx.createLinearGradient(p.x, p.y, q.x, q.y);
+          grad.addColorStop(0, BLUE_DIM + alpha + ")");
+          grad.addColorStop(1, BLUE_DIM + (alpha * 0.2) + ")");
+
+          ctx.beginPath();
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.stroke();
+        }
+      }
+
+      // Draw particle (green with glow)
+      ctx.save();
+      ctx.shadowBlur = CONFIG.glowBlur;
+      ctx.shadowColor = GREEN;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = GREEN_DIM + p.opacity + ")";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener("mouseleave", () => {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  });
+
+  window.addEventListener("resize", init);
+  window.addEventListener("load", resize);
+
+  init();
+  draw();
+})();
+
+
+
+/* ===== INTERACTIVE NAVBAR ===== */
+document.addEventListener("DOMContentLoaded", function () {
+  const navbar = document.querySelector(".custom-navbar");
+  const hamburgerBtn = document.getElementById("hamburger-btn");
+  const hamburger = document.getElementById("hamburger");
+  const overlay = document.getElementById("nav-overlay");
+  const overlayLinks = document.querySelectorAll(".overlay-link");
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".custom-navbar .nav-link");
+
+  // --- Hide/show navbar on scroll ---
+  let lastScroll = 0;
+  window.addEventListener("scroll", () => {
+    const current = window.scrollY;
+    if (current > lastScroll && current > 300) {
+      navbar.classList.add("hide");
+    } else {
+      navbar.classList.remove("hide");
+    }
+    lastScroll = current;
+    highlightActiveLink();
+  });
+
+  // --- Hamburger toggle ---
+  hamburgerBtn.addEventListener("click", () => {
+    hamburger.classList.toggle("open");
+    overlay.classList.toggle("open");
+    document.body.style.overflow = overlay.classList.contains("open") ? "hidden" : "";
+  });
+
+  // --- Close overlay on link click ---
+  overlayLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("open");
+      overlay.classList.remove("open");
+      document.body.style.overflow = "";
+    });
+  });
+
+  // --- Highlight active nav link on scroll ---
+  function highlightActiveLink() {
+    let currentSection = "";
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (window.scrollY >= sectionTop) {
+        currentSection = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${currentSection}`) {
+        link.classList.add("active");
+      }
+    });
+  }
+
+  highlightActiveLink();
 });
